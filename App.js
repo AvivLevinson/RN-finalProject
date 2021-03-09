@@ -1,21 +1,39 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, {useState, useEffect,createContext} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+
+
+
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import {AuthStackScreen, HomeStackScreen} from './src/navigation';
+
+
+export const AuthContext = createContext();
+
 
 export default function App() {
+  const [isLogged, setIsLogged]= useState(false);
+
+
+  const setLoginUser = ()=>{
+    setIsLogged(true);
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <AuthContext.Provider value={{setLoginUser}}> 
+    <SafeAreaProvider>
+    <NavigationContainer>
+        {isLogged ? (
+          <HomeStackScreen/>
+        ) : (
+          <AuthStackScreen/>
+        )}
+    </NavigationContainer>
+    </SafeAreaProvider  >
+    </AuthContext.Provider>
+
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+// check if user loged in and render the right props
