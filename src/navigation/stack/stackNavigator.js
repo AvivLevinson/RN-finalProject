@@ -1,8 +1,9 @@
+
 import * as React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 
 
-import {HomeScreen, LoginScreen, DeatilsScreen, LocationScreen} from '../../screen';
+import {HomeScreen, LoginScreen, DeatilsScreen, LocationScreen, PictureScreen} from '../../screen';
 
 
 // login process 
@@ -13,6 +14,8 @@ const AuthStackScreen = ()=>{
         <AuthStack.Screen name='Login' component = {LoginScreen}/>
         <AuthStack.Screen name='Details' component = {DeatilsScreen}/>
         <AuthStack.Screen name='Location' component = {LocationScreen}/>
+        <AuthStack.Screen name='Picture' component = {PictureScreen}/>
+
     </AuthStack.Navigator>
     );
 }
