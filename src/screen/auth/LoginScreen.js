@@ -2,7 +2,6 @@ import React, { useState, useContext } from 'react';
 import {
   Text,
   View,
-  Button,
   StyleSheet,
   TextInput,
   Image,
@@ -12,70 +11,98 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
+// React Native Elements Component
+import { Input, Icon } from 'react-native-elements';
+
+
+
+//Image
 import manWalk from '../../../assets/img/man-walks.png';
 
+//API Call
+import { login } from '../../api';
+
+// Context 
 import { AuthContext } from '../../../App.js';
 
+//UI Components
+import Title from '../../components/Title';
+import MyButton from '../../components/MyButton';
+
 export default function LoginScreen({ navigation }) {
-  const { setLoginUser } = useContext(AuthContext);
+
+  const { setIsLogged } = useContext(AuthContext);
   const [id, setId] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
 
+  const handleLogin = async () => {
+    console.log('handleLogin');
+    //const response = await login(phoneNumber, id);
+    //const jwt = response.jwt;
+    //console.log(jwt);
+    setIsLogged((prev) => {
+      return !prev;
+    });
+  };
+
   return (
-    <TouchableWithoutFeedback
-      onPress={() => {
-        Keyboard.dismiss();
-      }}>
-      <SafeAreaView style={styles.container}>
-        <View style={styles.topContainer}>
-          <Text style={styles.title}> Coronavirus Insulators</Text>
-        </View>
-
-        <View style={styles.imageContainer}>
-          <Image source={manWalk} style={{ width: 200, height: 200 }} resizeMode="center" />
-        </View>
-
-        <View style={styles.middleContainer}>
-          <Text style={styles.textSignup}>Please Sign Up:</Text>
-        </View>
-
-        <View style={styles.detalisContainer}>
-          <View>
-            <TextInput
-              style={styles.textInput}
-              placeholder="id:"
-              keyboardType="number-pad"
-              onChangeText={(id) => {
-                setId(id);
-              }}
-            />
+    <KeyboardAwareScrollView>
+      <TouchableWithoutFeedback
+        onPress={() => {
+          Keyboard.dismiss();
+        }}>
+        <SafeAreaView style={styles.container}>
+          <View style={styles.topContainer}>
+            <Title title={'Coronavirus Insulators'} />
           </View>
 
-          <View>
-            <TextInput
-              style={styles.textInput}
-              placeholder="phone number:"
-              keyboardType="number-pad"
-              onChangeText={(phoneNumber) => {
-                setPhoneNumber(phoneNumber);
-              }}
-            />
+          <View style={styles.imageContainer}>
+            <Image source={manWalk} style={{ width: 200, height: 200 }} resizeMode="center" />
           </View>
-        </View>
 
-        <View style={styles.bottomContainer}>
-          <TouchableOpacity
-            style={styles.btn}
-            onPress={() => {
-              console.log('press ');
-              navigation.navigate('Details');
-            }}
-            activeOpacity={0.5}>
-            <Text style={styles.textInsideButton}> next </Text>
-          </TouchableOpacity>
-        </View>
-      </SafeAreaView>
-    </TouchableWithoutFeedback>
+          <View style={styles.middleContainer}>
+            <Text style={styles.textSignup}>Please Sign Up:</Text>
+          </View>
+
+          <View style={styles.detalisContainer}>
+            <View>
+              <Input
+                style={styles.textInput}
+                containerStyle={{}}
+                placeholder="Enter Id:"
+                keyboardType="number-pad"
+                onChangeText={(id) => {
+                  setId(id);
+                }}
+              />
+            </View>
+
+            <View>
+              <Input
+                style={styles.textInput}
+                placeholder="Enter Phone Number:"
+                keyboardType="number-pad"
+                onChangeText={(phoneNumber) => {
+                  setPhoneNumber(phoneNumber);
+                }}
+              />
+            </View>
+          </View>
+
+          <View style={styles.bottomContainer}>
+          <MyButton
+            handleClick = {handleLogin}
+            title = {'Login'}
+            />
+ <Icon
+  name='g-translate'
+  color='#00aced' />
+          </View>
+        </SafeAreaView>
+      </TouchableWithoutFeedback>
+    </KeyboardAwareScrollView>
   );
 }
 const styles = StyleSheet.create({
@@ -101,13 +128,7 @@ const styles = StyleSheet.create({
 
   detalisContainer: {
     flex: 1,
-  },
-
-  title: {
-    color: '#4756DF',
-    borderBottomWidth: 1,
-    fontSize: 20,
-    marginTop: 10,
+    width:'60%',
   },
   textSignup: {
     color: '#3EC1F3',
@@ -116,22 +137,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     width: '100%',
-    borderBottomWidth: 1,
-    borderBottomColor: '#4756DF',
+    borderColor: '#4756DF',
     height: 50,
-  },
-
-  btn: {
-    alignItems: 'center',
-    backgroundColor: '#4756DF',
-    borderRadius: 50,
-    width: 150,
-    height: 50,
-    elevation: 6,
-  },
-  textInsideButton: {
-    color: 'white',
-    fontSize: 20,
-    paddingTop: 5,
   },
 });

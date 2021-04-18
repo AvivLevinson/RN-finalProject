@@ -3,7 +3,7 @@ import { View, StyleSheet, Text } from 'react-native';
 
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
-import { GOOGLE_API_KEY } from '../config';
+import { GOOGLE_API_KEY } from '../../config';
 
 export default function GooglePlacesInput({ setLocation }) {
   return (
@@ -34,6 +34,6 @@ export default function GooglePlacesInput({ setLocation }) {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: '60%',
+    height: '20%',
   },
 });

@@ -28,7 +28,7 @@ export default function Map({location, setLocation}) {
           longitudeDelta: 0.0421,
         }}
 
-        style={{ alignSelf: 'stretch', height: 500 }}
+        style={{ alignSelf: 'stretch', height: 470 }}
         onRegionChange = {handleCangeCords}
         
         >
@@ -52,10 +52,5 @@ export default function Map({location, setLocation}) {
 const styles = StyleSheet.create({
   container:{
     flex:1,
-    width:'100%',
-    height:'100%',
   },
-
-
-
 });

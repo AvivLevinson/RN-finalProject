@@ -3,7 +3,7 @@ import * as React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 
 
-import {HomeScreen, LoginScreen, DeatilsScreen, LocationScreen, PictureScreen} from '../../screen';
+import {HomeScreen, LoginScreen, DeatilsScreen, LocationScreen, PictureScreen,SendData} from '../../screen';
 
 
 // login process 
@@ -12,13 +12,26 @@ const AuthStackScreen = ()=>{
     return (
     <AuthStack.Navigator>
         <AuthStack.Screen name='Login' component = {LoginScreen}/>
-        <AuthStack.Screen name='Details' component = {DeatilsScreen}/>
-        <AuthStack.Screen name='Location' component = {LocationScreen}/>
-        <AuthStack.Screen name='Picture' component = {PictureScreen}/>
-
     </AuthStack.Navigator>
     );
 }
+
+
+
+
+const InfoStack  = createStackNavigator();
+const InfoStackScreen = ()=>{
+    return (
+    <InfoStack.Navigator>
+        <InfoStack.Screen name='Details' component = {DeatilsScreen}/>
+        <InfoStack.Screen name='Location' component = {LocationScreen}/>
+        <InfoStack.Screen name='Picture' component = {PictureScreen}/>
+        <InfoStack.Screen name='SendData' component = {SendData}/>
+    </InfoStack.Navigator>
+    );
+}
+
+
 
 
 // after the login, move to Hone screen 
@@ -34,6 +47,7 @@ const HomeStackScreen = ()=>{
 
 export {
     AuthStackScreen,
-    HomeStackScreen
+    HomeStackScreen,
+    InfoStackScreen,
 
 }

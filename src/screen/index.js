@@ -1,8 +1,9 @@
 import HomeScreen from './home/HomeScreen.js';
 import LoginScreen from './auth/LoginScreen.js';
-import DeatilsScreen from './auth/DeatilsScreen.js'
-import LocationScreen from './auth/LocationScreen.js'
-import PictureScreen from './auth/PictureScreen.js'
+import DeatilsScreen from './info-proccess/DeatilsScreen.js'
+import LocationScreen from './info-proccess/LocationScreen.js'
+import PictureScreen from './info-proccess/PictureScreen.js'
+import SendData from './info-proccess/SendData.js'
 
 
 
@@ -13,5 +14,6 @@ export {
     DeatilsScreen,
     LocationScreen,
     PictureScreen,
+    SendData,
 };
 

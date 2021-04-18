@@ -1,6 +1,7 @@
 import {
         AuthStackScreen, 
-        HomeStackScreen
+        HomeStackScreen,
+        InfoStackScreen
     } from './stack/stackNavigator.js';
 
 
@@ -8,5 +9,6 @@ import {
 
 export {
     AuthStackScreen,
-    HomeStackScreen
+    HomeStackScreen,
+    InfoStackScreen
 }

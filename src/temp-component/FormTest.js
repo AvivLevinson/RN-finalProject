@@ -5,9 +5,9 @@ import { Formik, ErrorMessage } from 'formik';
 
 import { Input, Button, CheckBox } from 'react-native-elements';
 
-import DatePicker from './DatePicker.js';
+import DatePicker from './DatePickerTest.js';
 
-import DateIcon from './DateIcon.js';
+import DateIcon from '../components/DateIcon.js';
 
 export default function Form({handleSubmitForm}) {
   const [visible, setVisible] = useState(false);
@@ -72,12 +72,12 @@ export default function Form({handleSubmitForm}) {
                 props.setFieldValue('gender', 'men');
               }}
               checkedColor="#0F0"
-              containerStyle={{}}
+              containerStyle={{ width: "25%",backgroundColor: 'none', borderWidth:0}}
               size={30}
               textStyle={{}}
               title="men"
               titleProps={{}}
-              uncheckedColor="#F00"
+              uncheckedColor="#DCDCDC"
             />
             <CheckBox
               center
@@ -86,17 +86,17 @@ export default function Form({handleSubmitForm}) {
                 props.setFieldValue('gender', 'female');
               }}
               checkedColor="#0F0"
-              containerStyle={{}}
+              containerStyle={{ width: "25%",backgroundColor: 'none', borderWidth:0}}
               size={30}
               textStyle={{}}
               title="female"
               titleProps={{}}
-              uncheckedColor="#F00"
+              uncheckedColor="#DCDCDC"
             />
           </View>
 
           <View style={styles.checkBoxSection}>
-            <Text> positive to covid-19: </Text>
+            <Text style={{alignItems:'center'}}> positive to covid-19: </Text>
             <CheckBox
               center
               checked={props.values.positive === 'true' ? true : false}
@@ -104,12 +104,12 @@ export default function Form({handleSubmitForm}) {
                 props.setFieldValue('positive', 'true');
               }}
               checkedColor="#0F0"
-              containerStyle={{}}
+              containerStyle={{ width: "25%",backgroundColor: 'none', borderWidth:0}}
               size={30}
               textStyle={{}}
               title="yes"
               titleProps={{}}
-              uncheckedColor="#F00"
+              uncheckedColor="#DCDCDC"
             />
             <CheckBox
               center
@@ -118,12 +118,12 @@ export default function Form({handleSubmitForm}) {
                 props.setFieldValue('positive', 'false');
               }}
               checkedColor="#0F0"
-              containerStyle={{}}
+              containerStyle={{ width: "25%",backgroundColor: 'none', borderWidth:0,}}
               size={30}
               textStyle={{}}
               title="no"
               titleProps={{}}
-              uncheckedColor="#F00"
+              uncheckedColor="#DCDCDC"
             />
           </View>
 
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
   checkBoxSection: {
     flexDirection: 'row',
     //borderColor: 'black',
-    justifyContent: 'space-around',
+    
 
     //borderWidth: 3,
   },

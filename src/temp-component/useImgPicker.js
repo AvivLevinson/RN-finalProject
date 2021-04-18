@@ -1,5 +1,6 @@
+/**
 import {useState} from 'react';
-
+import {Alert} from 'react-native';
 
 import * as ImagePicker from 'expo-image-picker';
 import * as Promissions from 'expo-permissions';
@@ -11,6 +12,7 @@ const useImgPicker = ()=>{
 
     const verifyPermissions = async ()=>{
         const {status} = await Promissions.askAsync(Promissions.CAMERA, Promissions.CAMERA_ROLL);
+       
         if(status !== 'granted'){
             console.log(result);
             Alert.alert('Error',
@@ -46,3 +48,5 @@ const useImgPicker = ()=>{
 };
 
 export default useImgPicker;
+ */
+
