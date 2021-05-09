@@ -10,14 +10,12 @@ export default function SendData() {
     context = useUserInfo();
 
   useEffect(()=>{
-    console.log('useEffect SendData');
-    console.log(Object.keys(context.state));
-
     async function sendData(){
+      console.log('sendData, context.state: ', context.state);
       const result = await sendProcessInfo(context.state);
       if(!result){
         console.log('Error');
-      } else{ 
+      } else{  
         setLoading(!lodaing);
         context.setIsFinishProcessInfo((prev)=> !prev);
       }

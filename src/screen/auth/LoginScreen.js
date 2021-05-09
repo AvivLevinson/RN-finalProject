@@ -3,10 +3,8 @@ import {
   Text,
   View,
   StyleSheet,
-  TextInput,
   Image,
   SafeAreaView,
-  TouchableOpacity,
   Keyboard,
   TouchableWithoutFeedback,
 } from 'react-native';
@@ -16,35 +14,43 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 // React Native Elements Component
 import { Input, Icon } from 'react-native-elements';
 
-
-
 //Image
 import manWalk from '../../../assets/img/man-walks.png';
 
 //API Call
 import { login } from '../../api';
 
-// Context 
+// Context
 import { AuthContext } from '../../../App.js';
 
 //UI Components
 import Title from '../../components/Title';
 import MyButton from '../../components/MyButton';
 
-export default function LoginScreen({ navigation }) {
-
+export default function LoginScreen() {
   const { setIsLogged } = useContext(AuthContext);
   const [id, setId] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
 
   const handleLogin = async () => {
+    // need make http to localhost 
     console.log('handleLogin');
-    //const response = await login(phoneNumber, id);
-    //const jwt = response.jwt;
-    //console.log(jwt);
-    setIsLogged((prev) => {
-      return !prev;
-    });
+
+    try{
+      const response = await login(phoneNumber, id); 
+      console.log(response);
+      
+
+      
+
+      setIsLogged((prev) => {
+        return !prev;
+      });
+
+    }catch(error){
+      console.log(error);
+
+    }
   };
 
   return (
@@ -92,13 +98,21 @@ export default function LoginScreen({ navigation }) {
           </View>
 
           <View style={styles.bottomContainer}>
-          <MyButton
-            handleClick = {handleLogin}
-            title = {'Login'}
-            />
- <Icon
-  name='g-translate'
-  color='#00aced' />
+            <MyButton handleClick={handleLogin} title={'Login'} />
+            <Icon
+      color="#0CC"
+      containerStyle={{}}
+      disabledStyle={{}}
+      iconProps={{}}
+      iconStyle={{}}
+      name="devices"
+      onLongPress={() => console.log("onLongPress()")}
+      onPress={() => console.log("onPress()")}
+      size={40}
+      type="material"
+    />
+
+
           </View>
         </SafeAreaView>
       </TouchableWithoutFeedback>
@@ -128,7 +142,7 @@ const styles = StyleSheet.create({
 
   detalisContainer: {
     flex: 1,
-    width:'60%',
+    width: '60%',
   },
   textSignup: {
     color: '#3EC1F3',
@@ -141,3 +155,5 @@ const styles = StyleSheet.create({
     height: 50,
   },
 });
+/*import Icon from "react-native-vector-icons/dist/MaterialCommunityIcons";
+*/

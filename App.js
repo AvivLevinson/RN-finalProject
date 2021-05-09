@@ -1,6 +1,6 @@
 import React, { useState, useEffect, createContext } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { StyleSheet, Text, View } from 'react-native';
+
+
 import { NavigationContainer } from '@react-navigation/native';
 
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -11,16 +11,48 @@ import { UserInfoProvider } from './src/reducer/user-reducer';
 export const AuthContext = createContext();
 
 export default function App() {
+
   const [isLogged, setIsLogged] = useState(false);
+
   const [isFinishProcessInfo, setIsFinishProcessInfo] = useState(false);
 
-  const setLoginUser = () => {
-    setIsLogged(false);
+  const setCompleteLogin = async () => {
+    console.log('setLoginUser');
+    console.log('store token_login on storage');
+    /**
+    const value = 'token_login';
+    try {
+      await AsyncStorage.setItem('token_login', value);
+      setIsFinishProcessInfo(true);
+
+    } catch (error) {
+      console.log(error);
+    }
+     */
+    setIsFinishProcessInfo(true);
+
   };
 
-  useEffect(()=>{
-    console.log('useEffect: isLogged:',isLogged);
-  });
+  
+    //check if user was login and compelte login process 
+    useEffect(()=>{
+      /**
+       *  (async ()=>{
+        try {
+          const value = await AsyncStorage.getItem('token_login')
+          
+          if(value !== null) {
+            console.log('value: ', value);
+            setIsFinishProcessInfo(true);
+          }
+  
+        } catch(error) {
+          console.log(error);
+      }})()
+       * 
+       */
+     
+    },[])
 
   return (
       <SafeAreaProvider>
@@ -29,7 +61,7 @@ export default function App() {
           isFinishProcessInfo ? (
             <HomeStackScreen />
           ) : isLogged ? (
-            <UserInfoProvider setIsFinishProcessInfo={setIsFinishProcessInfo}>
+            <UserInfoProvider setCompleteLogin={setCompleteLogin}>
               <InfoStackScreen />
             </UserInfoProvider>
           ) : (

@@ -1,6 +1,11 @@
 import React, { useContext, useReducer } from 'react';
 
-import {TYPES} from './types.js';
+export const TYPES = {
+  SET_INFO: 'SET_INFO',
+  SET_LOCATION: 'SET_LOCATION',
+  SET_IMAGE: 'SET_IMAGE',
+};
+
 
 const UserInfoContext = React.createContext();
 
@@ -25,9 +30,9 @@ const userInfoReducer = (state, action) => {
 
 
 
-const UserInfoProvider = ({ children, setIsFinishProcessInfo}) => {
+const UserInfoProvider = ({ children, setCompleteLogin}) => {
   const [state, dispatch] = useReducer(userInfoReducer, {});
-  const value = { state, dispatch, setIsFinishProcessInfo };
+  const value = { state, dispatch, setCompleteLogin };
   return <UserInfoContext.Provider value={value}>{children}</UserInfoContext.Provider>;
 }
 

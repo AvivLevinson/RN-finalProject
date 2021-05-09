@@ -28,6 +28,9 @@ export default function Form({ handleSubmitForm }) {
         gender: '',
         positive: '',
         privateHouse: '',
+        liveAlone:'',
+        profession:'',
+
       }}
       onSubmit={(values) => {
         handleSubmitForm(values);
@@ -76,8 +79,24 @@ export default function Form({ handleSubmitForm }) {
             title="Is Private House?"
             label={'privateHouse'}
             options={['no', 'yes']}
-            value={props.values.gender}
+            value={props.values.privateHouse}
             setFieldValue={props.setFieldValue}
+          />
+
+<MySwitch
+            title="Do you live alone?"
+            label={'liveAlone'}
+            options={['no', 'yes']}
+            value={props.values.liveAlone}
+            setFieldValue={props.setFieldValue}
+          />
+
+<Input
+            containerStyle={{ width: '70%' }}
+            disabledInputStyle={{ background: '#ddd' }}
+            onChangeText={props.handleChange('profession')}
+            leftIcon={<Icon name="account-outline" size={20} />}
+            placeholder="Your Profession"
           />
 
           <View style={{ alignItems: 'center', width: '100%' }}>
